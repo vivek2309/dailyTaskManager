@@ -4,7 +4,7 @@
     <span class="btn" (click)="openDialog()">ADD New Task</span>
   </div>
   <div class="body">
-    <span class="score">{{taskSrvc.getScore()}}%</span>
+    <span class="score" [ngClass]="{'color_red':taskSrvc.score < 33, 'color_amber':(taskSrvc.score > 33 && taskSrvc.score < 66), 'color_green':taskSrvc.score >= 66}">{{taskSrvc.getScore()}}%</span>
     <div class="wrapper" >
       <div class="col">
         <div class="title"><span>{{taskTitle.columnOne}}</span></div>

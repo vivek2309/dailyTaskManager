@@ -28,7 +28,6 @@
             top: 0.5rem;
             font-size: 1.3rem;
             font-weight: bold;
-            color: red;
         }
         .wrapper {
             width: 100%;
@@ -66,6 +65,14 @@
     }
 }
 
-// div {
-//     border: 1px solid black;
-// }
+.color {
+    &_red {
+        color: red;
+    }
+    &_amber {
+        color: $color_in-process;
+    }
+    &_green {
+        color: $color_complete;
+    }
+}

@@ -9,6 +9,7 @@ export class DailyTaskService {
   pendingTaskList: Array<Task> = [];
   inProgressTaskList: Array<Task> = [];
   completedTaskList: Array<Task> = [];
+  score: number = 0;
   constructor() { }
 
   listRenderer() {
@@ -28,11 +29,6 @@ export class DailyTaskService {
     });
 
   }
-
-  display() {
-    console.log(this.pendingTaskList, this.inProgressTaskList, this.completedTaskList);
-  }
-
   insertTask(task: Task) {
     if (task && (task.id === null || task.id === '')) {
       task.id = this.generateUniqueId();
@@ -107,7 +103,8 @@ export class DailyTaskService {
   getScore() {
     const total = this.getAllTasks().length;
     if (total) {
-      return Math.floor((this.completedTaskList.length / total) * 100);
+      this.score = Math.floor((this.completedTaskList.length / total) * 100)
+      return this.score;
     }
     return 0;
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddModifyTaskComponent } from './add-modify-task/add-modify-task.component';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
@@ -10,14 +10,17 @@ import { DailyTaskService } from './services/daily-task.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewChecked {
+  ngAfterViewChecked(): void {
+    this.chRef.detectChanges();
+  }
   title = 'planify';
   taskTitle = {
     columnOne: 'Pending',
     columnTwo: 'In Process',
     columnThree: 'Completed'
   };
-  constructor(public dialog: MatDialog, private taskSrvc: DailyTaskService) {
+  constructor(public dialog: MatDialog, private taskSrvc: DailyTaskService, private chRef: ChangeDetectorRef) {
   }
   ngOnInit(): void {
     this.taskSrvc.listRenderer();

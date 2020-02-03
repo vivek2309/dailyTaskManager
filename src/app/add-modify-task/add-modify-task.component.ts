@@ -36,7 +36,7 @@ export class AddModifyTaskComponent implements OnInit {
       creationDate: ['', Validators.required],
       status: ''
     });
-    if (this.data) {
+    if (this.data && this.data.taskItem) {
       this.form.patchValue(this.data.taskItem);
     }
   }
