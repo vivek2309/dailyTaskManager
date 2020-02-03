@@ -1,0 +1,51 @@
+<div class="main-wrapper">
+  <div class="header">
+    <span class="logo text-reflect">Daily Task Manager</span>
+    <span class="btn" (click)="openDialog()">ADD New Task</span>
+  </div>
+  <div class="body">
+    <span class="score">{{taskSrvc.getScore()}}%</span>
+    <div class="wrapper" >
+      <div class="col">
+        <div class="title"><span>{{taskTitle.columnOne}}</span></div>
+        <div class="content content_border" cdkDropList
+        #pendingList="cdkDropList"
+        [cdkDropListData]="taskSrvc.pendingTaskList"
+        [cdkDropListConnectedTo]="[inProcessList]"
+        cdkDropListSortingDisabled
+        (cdkDropListDropped)="drop($event)">
+          <ng-container *ngFor="let item of taskSrvc.pendingTaskList">
+            <app-task-card class="task-tile" [taskItem]="item" cdkDrag></app-task-card>
+          </ng-container>
+          
+        </div>
+      </div>
+      <div class="col">
+        <div class="title"><span>{{taskTitle.columnTwo}}</span></div>
+        <div class="content content_border" cdkDropList
+        #inProcessList="cdkDropList"
+        [cdkDropListData]="taskSrvc.inProgressTaskList"
+        [cdkDropListConnectedTo]="[completedList,pendingList]"
+        (cdkDropListDropped)="drop($event)">
+          <ng-container *ngFor="let item of taskSrvc.inProgressTaskList">
+            <app-task-card class="task-tile" [taskItem]="item" cdkDrag></app-task-card>
+          </ng-container>
+          
+        </div>
+      </div>
+      <div class="col">
+        <div class="title"><span>{{taskTitle.columnThree}}</span></div>
+        <div class="content" cdkDropList
+        #completedList="cdkDropList"
+        [cdkDropListData]="taskSrvc.completedTaskList"
+        [cdkDropListConnectedTo]="[inProcessList]"
+        (cdkDropListDropped)="drop($event)">
+          <ng-container *ngFor="let item of taskSrvc.completedTaskList">
+            <app-task-card class="task-tile" [taskItem]="item" cdkDrag></app-task-card>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>

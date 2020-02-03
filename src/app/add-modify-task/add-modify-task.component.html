@@ -1,0 +1,35 @@
+<div class="main-wrapper">
+  <div class="header">
+    <span>ADD/EDIT Task</span>
+  </div>
+  <div class="body">
+    <form class="form" [formGroup]="form">
+      <div class="part part_left">
+        <mat-form-field appearance="outline" >
+          <input matInput placeholder="Task Title" formControlName="title" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Description" formControlName="description">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Select" formControlName="priority">
+            <mat-option *ngFor="let option of priorityOptions" [value]="option.value" >{{option.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="part part_right">
+        <mat-form-field>
+          <input matInput [min]="minDate" [matDatepicker]="picker" placeholder="Choose a date" disabled="true" formControlName="creationDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="footer">
+    <div class="btn-wrapper">
+      <span class="btn" (click)="onSubmitHandler(form.value)" [ngClass]="{'btn_disable':!form.valid}">Save</span>
+      <span class="btn" (click)="closeDialog()">Cancel</span>
+    </div>
+  </div>
+</div>

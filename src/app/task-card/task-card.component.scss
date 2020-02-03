@@ -1,0 +1,57 @@
+@import '../../sass/main';
+.wrapper {
+    display: flex;
+    padding: 0 8px;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+    background: $color_pending;
+    height: 2.4rem;
+    width: 100%;
+    border-radius: 5px;
+    cursor: grabbing;
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /deep/ .material-icons {
+            cursor: pointer;
+        }
+        &_priority {
+            width: 3rem;
+        }
+        &_edit {
+            width: 2rem;
+        }
+        &_delete {
+            width: 2rem;
+        }
+
+        .up {
+            transform: rotate(-90deg) !important;
+        }
+        .down {
+            transform: rotate(90deg) !important;
+        }
+        .dash {
+            font-size: 2rem !important;
+        }
+    }
+    .title {
+        width: calc(100% - 7rem);
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.bgColor {
+    &--1 {
+        background: $color_pending;
+    }
+    &--2 {
+        background: $color_in-process;
+    }
+    &--3 {
+        background: $color_complete;
+    }
+}

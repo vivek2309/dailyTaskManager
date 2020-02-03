@@ -1,0 +1,6 @@
+<div class="wrapper" [ngClass]="{'bgColor--1':taskItem.status==PENDING, 'bgColor--2':taskItem.status==IN_PROGRESS, 'bgColor--3':taskItem.status==COMPLETED}" *ngIf="taskItem">
+  <span class="icon icon_priority"><i class="material-icons" [ngClass]="{'up': taskItem.priority==HIGH, 'down': taskItem.priority==LOW, 'dash': taskItem.priority==NORMAL}">{{taskItem.priority==NORMAL?'remove':'forward'}}</i></span>
+  <span class="title">{{taskItem.title}}</span>
+  <span class="icon icon_edit"><i class="material-icons" (click)="openDialog()" *ngIf="taskItem.status===PENDING">edit</i></span>
+  <span class="icon icon_delete"><i class="material-icons" (click)="removeTask(taskItem.id)">delete</i></span>
+</div>
